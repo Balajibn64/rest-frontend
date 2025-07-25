@@ -323,15 +323,15 @@ const Profile = () => {
       <form className="profile-form enhanced-form" onSubmit={handleSubmit}>
         <div className="profile-section">
           <div className="profile-fields-block">
-            <label>
+        <label>
               <span>Username:</span>
-              <input
+          <input
                 name="username"
-                type="text"
+            type="text"
                 value={form.username}
-                onChange={handleChange}
-                disabled={!editing}
-                required
+            onChange={handleChange}
+            disabled={!editing}
+            required
                 className="profile-input"
               />
             </label>
@@ -355,70 +355,70 @@ const Profile = () => {
                 disabled={!editing}
                 rows={3}
                 className="profile-input"
-              />
-            </label>
-            <label>
+          />
+        </label>
+        <label>
               <span>Email:</span>
-              <input
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                disabled
+          <input
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={handleChange}
+            disabled
                 className="profile-input"
-              />
-            </label>
-            <label>
+          />
+        </label>
+        <label>
               <span>Phone:</span>
-              <input
-                name="phone"
-                type="text"
-                value={form.phone}
-                onChange={handleChange}
-                disabled={!editing}
+          <input
+            name="phone"
+            type="text"
+            value={form.phone}
+            onChange={handleChange}
+            disabled={!editing}
                 className="profile-input"
-              />
-            </label>
+          />
+        </label>
             <div className="profile-switch-row">
-              <label>
+        <label>
                 <span>Open for Orders:</span>
-                <input
+          <input
                   type="checkbox"
                   name="enabled"
                   checked={!!form.enabled}
-                  onChange={handleChange}
-                  disabled={!editing}
-                />
-              </label>
+            onChange={handleChange}
+            disabled={!editing}
+          />
+        </label>
             </div>
-            <label>
+        <label>
               <span>Rating:</span>
-              <input
+          <input
                 name="rating"
                 type="number"
                 value={form.rating || ''}
                 readOnly
                 className="profile-input"
                 style={{ background: '#f3f3f3', color: '#888', cursor: 'not-allowed' }}
-              />
-            </label>
+          />
+        </label>
           </div>
         </div>
-        {editing && (
+          {editing && (
           <div className="profile-actions enhanced-actions">
             <button type="submit" className="profile-btn save-btn">💾 Save Changes</button>
-            <button
-              type="button"
+              <button
+                type="button"
               className="profile-btn cancel-btn"
-              onClick={() => {
+                onClick={() => {
                 setForm(profile ? { ...defaultProfile, ...profile } : defaultProfile);
-                setEditing(false);
+                  setEditing(false);
                 setImagePreview(profile?.restaurantPic || '');
                 setImageFile(null);
-              }}
-            >
+                }}
+              >
               ❌ Cancel
-            </button>
+              </button>
           </div>
         )}
       </form>
@@ -504,13 +504,13 @@ const Profile = () => {
               <button type="submit" className="profile-btn save-btn">{addressEditing ? 'Update Address' : 'Add Address'}</button>
               {addressEditing && (
                 <button type="button" className="profile-btn cancel-btn" onClick={() => { setAddressEditing(false); setAddressForm(address); }}>Cancel</button>
-              )}
-            </div>
-          </form>
+          )}
+        </div>
+      </form>
         )}
       </div>
     </div>
   );
 };
 
-export default Profile; 
+export default Profile;
