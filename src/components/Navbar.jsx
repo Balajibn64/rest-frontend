@@ -26,7 +26,7 @@ const Navbar = ({ toggleSidebar, isSidebarOpen }) => {
           <span></span>
         </div>
 
-        <h2 className="navbar-logo">🍴 FoodExpress - Restaurant</h2>
+        <h2 className="navbar-logo">🍴 FoodStack - Restaurant</h2>
       </div>
       <div className="navbar-right">
         <button className="logout-btn" onClick={handleLogout}>

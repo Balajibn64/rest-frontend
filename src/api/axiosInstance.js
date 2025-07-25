@@ -2,9 +2,7 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8080',
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  // Do NOT set Content-Type here! Let browser/axios set it per request.
 });
 
 // Add a request interceptor to include JWT token if available

@@ -22,11 +22,12 @@ export const getRestaurantProfile = () =>
 export const updateRestaurantProfile = (profileData, profilePic) => {
   const formData = new FormData();
   if (profileData) {
-    formData.append('update', JSON.stringify(profileData));
+    formData.append('update', new Blob([JSON.stringify(profileData)], { type: 'application/json' }));
   }
   if (profilePic) {
     formData.append('profilePic', profilePic);
   }
+  // Do NOT set Content-Type header manually; let browser/axios set it with boundary
   return axiosInstance.post('/restaurant/details', formData);
 };
 
@@ -37,21 +38,26 @@ export const getRestaurantOrders = () => axiosInstance.get(`${BASE_URL}/orders`)
 export const updateOrderStatus = (orderId, status) =>
   axiosInstance.put(`${BASE_URL}/orders/${orderId}/status`, { status });
 
+// ✅ Update order status (PREPARING or READY_FOR_PICKUP)
+export const updateOrderStatusRestaurant = (orderId, status) =>
+  axiosInstance.put('/restaurant/orderStatusUpdate', { orderId, status });
+
 // ✅ Get restaurant dashboard statistics
 export const getRestaurantDashboardStats = () => axiosInstance.get(`${BASE_URL}/dashboard`);
 
-// Address APIs
-export const getRestaurantAddress = (id) =>
+
+// Address CRUD APIs for restaurant
+export const getRestaurantAddresses = (id) =>
   axiosInstance.get(`/restaurant/address?id=${id}`);
 
-export const addRestaurantAddress = (data) =>
-  axiosInstance.post('/restaurant/address', data);
+export const addRestaurantAddress = (address) =>
+  axiosInstance.post('/restaurant/address', address);
 
-export const updateRestaurantAddress = (data) =>
-  axiosInstance.put('/restaurant/address', data);
+export const updateRestaurantAddress = (address) =>
+  axiosInstance.put('/restaurant/address', address);
 
-export const deleteRestaurantAddress = (data) =>
-  axiosInstance.delete('/restaurant/address', { data });
+export const deleteRestaurantAddress = (address) =>
+  axiosInstance.delete('/restaurant/address', { data: address });
 
 // Order Management APIs
 export const getCurrentOrders = () =>
@@ -65,3 +71,36 @@ export const getAcceptedOrders = () =>
 
 export const getDeliveredOrders = () =>
   axiosInstance.get('/restaurant/deliveredOrders');
+
+// Dish (Menu) APIs
+export const getDishes = () => axiosInstance.get('/restaurant/getDishes');
+
+export const addDish = (dishData, profilePic) => {
+  const formData = new FormData();
+  if (dishData) {
+    formData.append('update', new Blob([JSON.stringify(dishData)], { type: 'application/json' }));
+  }
+  if (profilePic) {
+    formData.append('profilePic', profilePic);
+  }
+  return axiosInstance.post('/restaurant/dishadd', formData);
+};
+
+export const modifyDish = (dishData, profilePic) => {
+  const formData = new FormData();
+  if (dishData) {
+    formData.append('update', new Blob([JSON.stringify(dishData)], { type: 'application/json' }));
+  }
+  if (profilePic) {
+    formData.append('profilePic', profilePic);
+  }
+  return axiosInstance.put('/restaurant/dishmodify', formData);
+};
+
+export const deleteDish = (dishData) => {
+  const formData = new FormData();
+  if (dishData) {
+    formData.append('update', new Blob([JSON.stringify(dishData)], { type: 'application/json' }));
+  }
+  return axiosInstance.delete('/restaurant/deletedish', { data: formData });
+};

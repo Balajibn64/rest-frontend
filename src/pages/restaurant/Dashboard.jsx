@@ -1,20 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/dashboard.css';
-
-// ✅ Mock API (replace this with real API call later)
-const getRestaurantDashboardStats = async () => {
-  return {
-    data: {
-      todayOrders: 27,
-      todayRevenue: 5640,
-      pendingOrders: 3,
-      topDishes: [
-        { name: 'Chicken Biryani', count: 14 },
-        { name: 'Paneer Tikka', count: 8 },
-      ],
-    },
-  };
-};
+import { getRestaurantDashboardStats } from '../../api/restaurantApi';
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
